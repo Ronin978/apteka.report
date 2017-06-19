@@ -16,10 +16,9 @@ class Report extends Migration
         Schema::create('report', function (Blueprint $table) 
         {
          $table->increments('id');
-         $table->string('pidrozdil');
+         $table->string('section');
          $table->date('date');
          $table->integer('id_preparat');
-         $table->integer('extent');
          $table->integer('all');
          $table->integer('rozhod');         
          $table->integer('prihod');

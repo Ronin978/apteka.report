@@ -12,8 +12,14 @@
 */
 
 Route::get('/','PrepController@index');
- Route::resource('/article','PrepController');
+Route::resource('/allName','PrepController');
+Route::resource('/allReports','ReportController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/my','UserController');
+Route::get('/edit/my', 'UserController@myedit')->name('myEdit')->middleware('checkUser');
+Route::get('/myshow/all', 'UserController@myshow')->name('myShow')->middleware('checkUser');
+Route::get('/user/delete/{id}', 'UserController@delete');

@@ -99,19 +99,15 @@
                         
                        
                     @if(\Auth::user())
-                        @if(\Auth::user()->group=='superAdmin')
+                       
                             <li><a href="{{action('UserController@myshow')}}">Керування профілями</a></li>
-                            <li><a href="{{action('ArticlesController@index')}}">All article</a></li>
-                            <li><a href="{{action('CategoryController@index')}}">All category</a></li>
-                            <li><a href="{{action('CommentsController@index')}}">All comments</a></li>
-                            <li><a href="/adminzone">Adminka</a></li>
-                        @endif
-                        @if(\Auth::user()->group=='admin')
+                            <li><a href="{{action('PrepController@index')}}">All NamePreparat</a></li>
                             
-                            <li><a href="{{action('ArticlesController@index')}}">All article</a></li>
-                            <li><a href="{{action('ArticlesController@create')}}">Додати статтю</a></li>
-                            <li><a href="/adminzone">Adminka</a></li>
-                        @endif
+                            <li><a href="/my">Adminka</a></li>
+                        
+                            
+                            
+                        
                     @endif
                     &nbsp;
                     </ul>
