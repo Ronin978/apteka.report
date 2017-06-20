@@ -67,6 +67,19 @@
     }
     </script>
 
+    <script type="text/javascript">
+    
+    function oninputt(key) {
+        
+       var start = parseFloat( document.getElementById('start'+key).value );
+       var prihod = parseFloat( document.getElementById('prihod'+key).value );
+       var vykor = parseFloat( document.getElementById('vykor'+key).value );
+        document.getElementById('result'+key).value = start+prihod-vykor;
+    }
+    </script>
+
+    
+
 </head>
 
 
@@ -90,6 +103,10 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         На головну
+                    </a>
+
+                    <a class="navbar-brand" href="{{action('FrontController@create')}}">
+                        Add report
                     </a>
                 </div>
 

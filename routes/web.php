@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/','PrepController@index');
+Route::get('/','FrontController@index');
 Route::resource('/allName','PrepController');
 Route::resource('/allReports','ReportController');
+Route::resource('/Reports','FrontController');
 
 Auth::routes();
 
