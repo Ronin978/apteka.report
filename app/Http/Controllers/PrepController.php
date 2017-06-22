@@ -22,7 +22,8 @@ class PrepController extends Controller
     public function store(Request $request)
     {
         Preparation::create($request->all());
-        return back()->with('message','Категория добавлена');
+        flash('Дані внесені.');
+        return back();
     }
 
     public function edit($id)
@@ -36,7 +37,10 @@ class PrepController extends Controller
         $prep=Preparation::find($id);
         $prep->update($request->all());
         $prep->save();
-        return back()->with('message','Категория обновлена');
+
+        flash('Дані змінені.');
+        return back();
+        
     }
 
     public function show($id)
@@ -48,9 +52,6 @@ class PrepController extends Controller
     {
         $prep=Preparation::find($id);
         $prep->delete();
-
-        //$preps=Preparation::all(); 
-        //return view('preparat.index',['prep'=>$preps]);
         return back()->with('message','Категория deleted');
     }
 

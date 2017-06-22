@@ -15,16 +15,14 @@ class Report extends Migration
     {
         Schema::create('report', function (Blueprint $table) 
         {
-         $table->increments('id');
-         $table->string('mounth');
-         $table->integer('year');
+         $table->increments('id');        
          $table->integer('id_preparat');
-         $table->integer('start');
-                  
+         $table->integer('id_caption');
+         $table->date('termin')->nullable();
+         $table->integer('all');
          $table->integer('prihod');
          $table->integer('vykor'); 
          $table->integer('result'); 
-         $table->date('termin');
          $table->timestamps();
          $table->softDeletes();
         });

@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Scripts -->
     <script>
@@ -71,11 +72,20 @@
     
     function oninputt(key) {
         
-       var start = parseFloat( document.getElementById('start'+key).value );
+       var all = parseFloat( document.getElementById('all'+key).value );
        var prihod = parseFloat( document.getElementById('prihod'+key).value );
        var vykor = parseFloat( document.getElementById('vykor'+key).value );
-        document.getElementById('result'+key).value = start+prihod-vykor;
+        document.getElementById('result'+key).value = all+prihod-vykor;
     }
+
+    function checkUp() {
+        document.getElementById('checkGroup').value = 'admin';
+    }
+
+    function checkDown(){
+        document.getElementById('checkGroup').value = '';
+    }
+    
     </script>
 
     
@@ -105,9 +115,7 @@
                         На головну
                     </a>
 
-                    <a class="navbar-brand" href="{{action('FrontController@create')}}">
-                        Add report
-                    </a>
+                    
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -116,15 +124,10 @@
                         
                        
                     @if(\Auth::user())
-                       
+                        @if(\Auth::user()->group == 'superAdmin')    
                             <li><a href="{{action('UserController@myshow')}}">Керування профілями</a></li>
-                            <li><a href="{{action('PrepController@index')}}">All NamePreparat</a></li>
-                            
-                            <li><a href="/my">Adminka</a></li>
-                        
-                            
-                            
-                        
+                        @endif
+                            <li><a href="{{action('ReportController@create')}}">Add report</a></li>
                     @endif
                     &nbsp;
                     </ul>

@@ -81,7 +81,8 @@ class UserController extends Controller
         $user=User::find($id);
         $user->delete();
 
-        return back()->with('message', 'Користувача видалено.');
+        flash('Користувача деактивовано.');
+        return back();
     }
 
     public function restore($id)
@@ -89,7 +90,8 @@ class UserController extends Controller
         $user=User::withTrashed()->find($id);
         $user->restore();
 
-        return back()->with('message', 'Користувача відновлено.');
+        flash('Користувача відновлено.');
+        return back();
     }
 
     public function delete($id)
@@ -97,31 +99,17 @@ class UserController extends Controller
         $user=User::withTrashed()->find($id);
         $user->forceDelete();
 
-        return back()->with('message', 'Користувача видалено повністю.');
+        flash('Користувача видалено повністю.');
+        return back();
     }
 
     public function update(Request $request, $id)
     {
         $user=User::find($id);
-        
-        if($request->hasFile('preview')) 
-        {
-            $group=$user->group; 
-            $root=$_SERVER['DOCUMENT_ROOT']."/logo/"; 
-                if(!file_exists($root.$group))    {mkdir($root.$group);}
-            $f_name=$request->file('preview')->getClientOriginalName();
-            $request->file('preview')->move($root.$group,$f_name); 
-            $all=$request->all(); 
-            $all['preview']="/logo/".$group."/".$f_name;
-            $user->update($all);
-        }
-        else
-        {
-           $user->update($request->all());
-        }
-        
-        
-        return back()->with('message', 'Дані змінено');
+        $user->update($request->all());
+                
+        flash('Дані змінено');
+        return back();
     }
     
     public function myedit()

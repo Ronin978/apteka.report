@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/','FrontController@index');
+Route::get('/','ReportController@index');
 Route::resource('/allName','PrepController');
-Route::resource('/allReports','ReportController');
-Route::resource('/Reports','FrontController');
+Route::resource('/allReports','FrontController');
+Route::resource('/reports','ReportController');
 
 Auth::routes();
 
@@ -23,4 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/my','UserController');
 Route::get('/edit/my', 'UserController@myedit')->name('myEdit')->middleware('checkUser');
 Route::get('/myshow/all', 'UserController@myshow')->name('myShow')->middleware('checkUser');
+Route::get('/user/restore/{id}', 'UserController@restore');
 Route::get('/user/delete/{id}', 'UserController@delete');

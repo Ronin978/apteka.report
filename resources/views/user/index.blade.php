@@ -2,11 +2,7 @@
 
 @section('content')
 
-@if(Session::has('message'))
-	<div id="comment" class="alert alert-danger">
-		{{Session::get('message')}}
-	</div>
-@endif
+@include('flash::message')
 
 	<h1>{{$user->name}}</h1>
 

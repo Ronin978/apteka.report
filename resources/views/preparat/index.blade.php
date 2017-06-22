@@ -3,7 +3,7 @@
 <table class="table" border="1" >
 	<tr>
 		<td>id</td>
-		<td>Название</td>
+		<td>Назва</td>
 		<td>Одиниця виміру</td>>
 		<td>Действие</td>
 		
@@ -14,7 +14,7 @@
 		<td>{{$preparat->title}}</td>
 		<td>{{$preparat->units}}</td>
 		<td>
-			<button onclick="location.href='{{action('PrepController@edit',['preparat'=>$preparat->id])}}'">Изменить</button>
+			<button onclick="location.href='{{action('PrepController@edit',['preparat'=>$preparat->id])}}'">Редагувати</button>
 
 			<form method="POST" action="{{action('PrepController@destroy',['id'=>$preparat->id])}}" onSubmit='return confirm("Для видалення натисніть OK?");'>
 				<input type="hidden" name="_method" value="delete"/>

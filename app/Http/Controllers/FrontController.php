@@ -17,12 +17,6 @@ class FrontController extends Controller
     public function index()
     {
         $reports=Report::all();
-
-        //foreach ($reports as $report) {
-          //  $rs[]=$report->date;
-          //  $pr[]=$report->pidrozdil;
-       // }
-       
         return view('site.index',['reports'=>$reports]);
     }
 
@@ -34,12 +28,9 @@ class FrontController extends Controller
     public function create()
     {
         $section=\Auth::user()->section;
-        $reports=Report::withTrashed()->get();
-
-        $pr=Preparation::all();
-
-       
-        return view('site.create',['reports'=>$reports, 'preparat'=>$pr, 'section'=>$section]);
+        //$reports=Report::withTrashed()->get();
+        $pr=Preparation::all();       
+        return view('site.create',['preparat'=>$pr, 'section'=>$section]);
     }
 
     /**
@@ -50,28 +41,48 @@ class FrontController extends Controller
      */
     public function store(Request $request)
     {
-        for ($i=0; $i <= (count($_POST)-3)/8 - 1; $i++) 
-        { 
-            $id_preparat = $_POST["id_preparat$i"];
-            
-            $start = $_POST["start$i"];
-            $prihod = $_POST["prihod$i"];
-            $vykor = $_POST["vykor$i"];
-            $result = $_POST["result$i"];
-            $mounth = $_POST['mounth'];
-            $year = $_POST['year'];
-        
+        $post = $request->all();
+        $section=\Auth::user()->section;
 
-            Report::create([ "mounth" => $mounth,
-                "year" => $year,
-                "id_preparat" => $id_preparat,
+       // echo (count($post)-3)/8 - 1;
+          //     dd($post);
+        for ($i=0; $i <= (count($post)-3)/8 - 1; $i++) 
+        { 
+            $mass["id_preparat"] = $post["id_preparat$i"];  
+            $mass["termin"] = $post["termin$i"];  
+            $mass["start"] = $post["start$i"];
+            $mass["prihod"] = $post["prihod$i"];
+            $mass["vykor"] = $post["vykor$i"];
+            $mass["result"] = $post["result$i"];
+            $mass["mounth"] = $post['mounth'];
+            $mass["year"] = $post['year'];
+            $mass["section"] = $section;
+
+            
+            
+            if (empty(Report::where('mounth', $mass['mounth'])->where('year', $mass['year'])->where('section', $section)->where('id_preparat', $mass["id_preparat"])->get()->count()))
+            {                
+                Report::create($mass); 
+                $alert = 'Категория добавлена!';
+            }
+            else 
+            {
+               
+              $alert = 'NO';
                 
-                "start" => $start,
-                "prihod" => $prihod,
-                "vykor" => $vykor,
-                "result" => $result,]);
+                
+            } 
+
+            
+
+            
         }
-        return back()->with('message','Категория добавлена');
+        flash($alert);
+        
+        $reports = Report::all();
+        return view('report.index', ['reports' => $reports]);
+
+        
     }
 
     /**

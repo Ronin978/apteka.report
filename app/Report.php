@@ -10,7 +10,7 @@ class Report extends Model
     use SoftDeletes;
 
     protected $table="report";
-	protected $fillable=['mounth', 'year','id_preparat', 'start', 'prihod', 'vykor', 'result'];
+	protected $fillable=['id_preparat', 'id_caption', 'termin', 'all', 'prihod', 'vykor', 'result'];
 
 	
 }

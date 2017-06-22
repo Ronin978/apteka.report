@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Report;
 use App\Preparation;
+use App\Caption;
 use App\User;
 
 class ReportController extends Controller
@@ -16,13 +17,10 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $section=\Auth::user()->section;
-        $reports=Report::withTrashed()->get();
-
-        $prep=Preparation::all();
-
+        $captions=Caption::all();
        
-        return view('report.index',['reports'=>$reports, 'preparat'=>$prep, 'section'=>$section]);
+            return view('report.index',['captions'=>$captions]);
+              
     }
 
     /**
@@ -32,7 +30,10 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('report.create');
+        $section=\Auth::user()->section;
+        //dd($section);
+        $preps=Preparation::all();       
+        return view('report.create',['preps'=>$preps, 'section'=>$section]);
     }
 
     /**
@@ -43,7 +44,45 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = $request->all();
+
+        $caption['section'] = $post['section'];
+        $caption['mounth'] = $post['mounth'];
+        $caption['year'] = $post['year'];
+
+
+       // for ($i=0; $i <= (count($post)-3)/9 - 1; $i++) 
+        
+            $report['id_preparat'] = $post["id_preparat$i"];  
+             
+            $report['termin'] = $post["termin$i"];  
+            $report['all'] = $post["all$i"];
+            $report['prihod'] = $post["prihod$i"];
+            $report['vykor'] = $post["vykor$i"];
+            $report['result'] = $post["result$i"];
+            
+            $prep['title'] = $post["title$i"];
+            $prep['units'] = $post["units$i"];
+                       
+           
+                Caption::create($caption);
+                 
+                Report::create($report);
+                
+                Preparation::create($prep);
+        }
+
+        
+
+        flash($alert);
+        
+       // $captions=Caption::all();
+
+       $section=$caption['section'];
+        //dd($section);
+        $preps=Preparation::all();       
+        return view('report.create',['preps'=>$preps, 'section'=>$section]);
+
     }
 
     /**
