@@ -23,6 +23,7 @@
     </script>
     <script src="{{asset('js/jquery-3.2.0.min.js')}}"></script>
     <script src="{{asset('js/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('js/myFunction.js')}}"></script>
     <script>
         tinymce.init({
         selector: '.tinyMCE',
@@ -51,44 +52,6 @@
             });
         }); 
     </script>
-
-    <script language="javascript">
-    function CallPrint(strid) 
-    { 
-        var prtContent = document.getElementById(strid); 
-        var WinPrint = window.open('','','left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0'); 
-        
-        WinPrint.document.write(prtContent.innerHTML); 
-        WinPrint.document.close(); 
-        WinPrint.focus(); 
-        WinPrint.print(); 
-        WinPrint.close();
-         
-        prtContent.innerHTML=strOldOne;
-    }
-    </script>
-
-    <script type="text/javascript">
-    
-    function oninputt(key) {
-        
-       var all = parseFloat( document.getElementById('all'+key).value );
-       var prihod = parseFloat( document.getElementById('prihod'+key).value );
-       var vykor = parseFloat( document.getElementById('vykor'+key).value );
-        document.getElementById('result'+key).value = all+prihod-vykor;
-    }
-
-    function checkUp() {
-        document.getElementById('checkGroup').value = 'admin';
-    }
-
-    function checkDown(){
-        document.getElementById('checkGroup').value = '';
-    }
-    
-    </script>
-
-    
 
 </head>
 

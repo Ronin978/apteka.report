@@ -3,7 +3,7 @@
 
 	<form method="POST" action="{{action('PrepController@update',['prep'=>$prep->id])}}"/>
 		Назва препарату<br>
-		<input type="text" name="title" value="{{$prep->title}}"/><br>
+		<input type="text" name="title" value="{{$prep->title}}"/>
 		Одиния виміру<br>
 		<input type="text" name="units" value="{{$prep->units}}"/><br>
 		<input type="hidden" name="_method" value="put"/>
