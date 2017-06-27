@@ -2,6 +2,17 @@
 @section('content')
 
 @include('flash::message')
+<!--
+<form method="POST" action="{{action('ReportController@update', ['user'=>$user->id])}}">
+	<input type="text" name="group" value="{{$user->group}}">
+
+	<input type="hidden" name="_method" value="put"/>
+	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+	
+	<input type="submit" value="update">
+</form>
+-->
+
 
 <form method="POST" action="{{action('UserController@update', ['user'=>$user->id])}}">
 	<p>Name</p>
@@ -35,12 +46,6 @@
 	<br>
 	<input type="submit" value="Зберегти">
 
-</form>
-
-<form method="POST" action="{{action('ReportController@update')}}">
-	<input type="text" name="group">
-
-	<input type="submit" value="update">
 </form>
 
 

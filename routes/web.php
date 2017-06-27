@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/my','UserController');
-Route::get('/edit/my', 'UserController@myedit')->name('myEdit')->middleware('checkUser');
+Route::get('/edit/my', 'UserController@myedit')->name('myEdit');
 Route::get('/myshow/all', 'UserController@myshow')->name('myShow')->middleware('checkUser');
 Route::get('/user/restore/{id}', 'UserController@restore');
 Route::get('/user/delete/{id}', 'UserController@delete');
