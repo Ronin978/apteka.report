@@ -100,7 +100,26 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $reports=Report::where('id_caption', $id)->get();
+        $captions=Caption::where('id', $id)->get();
+        
+        foreach ($reports as $report) 
+        {            
+            $preps=Preparation::find($report->id_preparat);
+            $report['preparat_name']=$preps->title;
+            $report['preparat_unit']=$preps->units;
+        }
+
+        $reportss[]=$report;
+        
+        foreach ($captions as $caption) 
+        {
+            $captionss['section'] = $caption->section;
+            $captionss['mounth'] = $caption->mounth;
+            $captionss['year'] = $caption->year;
+        }
+        
+        return view('report.show',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
     }
 
     /**
