@@ -28,5 +28,5 @@
 
 </table>
 
-<a href="{{action('PrepController@create',['preparat'=>$preparat->id])}}">Додати новий</a>
+<a href="{{action('PrepController@create')}}">Додати новий</a>
 @endsection
