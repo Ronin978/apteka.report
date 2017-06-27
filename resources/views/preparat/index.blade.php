@@ -4,7 +4,7 @@
 	<tr>
 		<td>id</td>
 		<td>Назва</td>
-		<td>Одиниця виміру</td>>
+		<td>Одиниця виміру</td>
 		<td>Действие</td>
 		
 	</tr>
@@ -29,5 +29,4 @@
 </table>
 
 <a href="{{action('PrepController@create',['preparat'=>$preparat->id])}}">Додати новий</a>
-
 @endsection

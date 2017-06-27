@@ -31,10 +31,12 @@
 			<li><a href="{{action('UserController@myshow')}}">Керування профілями</a></li>
 			<hr>
 			@endif
-			<li><a href="{{action('PrepController@index')}}">All PreparatName</a></li>
 			<li><a href="{{action('PrepController@create')}}">Add PreparatName</a></li>
 			<hr>
+			<li><a href="{{action('ReportController@create')}}">Add Report</a></li>
 			
+			<hr>
+
 		</ul>
 	@endif
 @endif

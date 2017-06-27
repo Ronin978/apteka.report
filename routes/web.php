@@ -13,7 +13,6 @@
 
 Route::get('/','ReportController@index');
 Route::resource('/allName','PrepController');
-Route::resource('/allReports','FrontController');
 Route::resource('/reports','ReportController');
 
 Auth::routes();

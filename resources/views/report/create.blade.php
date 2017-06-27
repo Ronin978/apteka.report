@@ -3,11 +3,16 @@
 
 @include('flash::message')
 <form method="POST" action="{{action('ReportController@store')}}">		
-			<input name="section" type="text" value="{{$section}}">
-			
-			//Звіт до бухгалтерії про проходження та використання лікарських засобів та виробів медичного призначенння №
+	<input name="section" type="hidden" value="{{$section}}">
 
-	<p>за 	<select id="mounth" name="mounth" >
+	<p align="center">
+		{{$section}}
+		<br>
+		Звіт до бухгалтерії про проходження та використання лікарських засобів та виробів медичного призначенння №
+				
+
+		<p align="center">за 	
+			<select id="mounth" name="mounth" >
 				<option selected value="{{$mounth}}">січень</option>		
 				<option value="лютий">лютий</option>		
 				<option value="березень">березень</option>		
@@ -24,7 +29,9 @@
 			</select>
 
 
- 	<input type="number" name="year" id="year" value="{{$year}}">р.</p>
+ 			<input size="10" type="number" name="year" id="year" value="{{$year}}" >р.
+ 		</p>
+ 	</p>
 
 
 	<table id="tableReport" class="table" border="1">
@@ -32,7 +39,7 @@
 		<td>Номер</td>
 		<td>Найменування</td>
 		<td>Одиниця виміру</td>
-		<td>Термін придатності</td>
+		<td>Термін<br> придатності</td>
 		<td>Залишок на поч. місця</td>
 		<td>надходження</td>
 		<td>використання</td>
@@ -45,7 +52,7 @@
 					<td>					
 						<input name="title{{$key}}" type="text" value="{{$prep->title}}">
 					</td>
-					<td><input name="units{{$key}}" type="text" value="{{$prep->units}}"></td>
+					<td><input id="" oninput="oninputtt('<? echo $key ?>')" name="units{{$key}}" type="text" value="{{$prep->units}}"></td>
 					<td><input name="termin{{$key}}" type="date" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}"></td>
 					<td><input name="all{{$key}}" id="all{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
 					<td><input name="prihod{{$key}}" id="prihod{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>

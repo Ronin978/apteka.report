@@ -5,6 +5,10 @@ function oninputt(key) {
     document.getElementById('result'+key).value = all+prihod-vykor;
 }
 
+function oninputtt(key) {
+    var document.getElementById('units'+key).size
+}
+
 function checkUp() {
     document.getElementById('checkGroup').value = 'admin';
 }

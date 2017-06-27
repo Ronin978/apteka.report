@@ -18,8 +18,7 @@ class ReportController extends Controller
     public function index()
     {
         $captions=Caption::all();
-       
-            return view('report.index',['captions'=>$captions]);
+        return view('report.index',['captions'=>$captions]);
               
     }
 
@@ -33,7 +32,6 @@ class ReportController extends Controller
         $section=\Auth::user()->section;
         $mounth='січень';
         $year='2017';
-        //dd($section);
         $preps=Preparation::all();       
         return view('report.create',['preps'=>$preps, 'section'=>$section, 'mounth'=>$mounth, 'year'=>$year]);
     }
@@ -47,7 +45,6 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $post = $request->all();
-//dd($post);
         $caption['section'] = $post['section'];
         $caption['mounth'] = $post['mounth'];
         $caption['year'] = $post['year'];
@@ -57,18 +54,14 @@ class ReportController extends Controller
             Caption::create($caption);
 
             for ($i=0; $i <= (count($post)-4)/8 - 1; $i++) 
-            {
-                
+            {                
                 $report['id_preparat'] = $post["id_preparat$i"];  
-
-                 $id_captions = Caption::where('section', $caption['section'])->get();
-                    foreach ($id_captions as $value) {
+                $id_captions = Caption::where('section', $caption['section'])->get();
+                    foreach ($id_captions as $value) 
+                    {
                         $id_caption = $value->id;                        
                     }
-
-
                 $report['id_caption'] = $id_caption;  
-                 
                 $report['termin'] = $post["termin$i"];  
                 $report['all'] = $post["all$i"];
                 $report['prihod'] = $post["prihod$i"];
@@ -77,11 +70,8 @@ class ReportController extends Controller
                 
                 $prep['title'] = $post["title$i"];
                 $prep['units'] = $post["units$i"];
-                           
-               
-                    
                      
-                    Report::create($report);
+                Report::create($report);
                     
                 if (empty(Preparation::where('title', $prep['title']))) 
                 {
@@ -97,14 +87,8 @@ class ReportController extends Controller
 
         flash($alert);
         
-       // $captions=Caption::all();
-
-        $section=$caption['section'];
-        $mounth=$caption['mounth'];
-        $year=$caption['year'];
-        //dd($section);
         $preps=Preparation::all();       
-        return view('report.create',['preps'=>$preps, 'section'=>$section, 'mounth'=>$mounth, 'year'=>$year]);
+        return view('report.create',['preps'=>$preps, 'section'=>$caption['section'], 'mounth'=>$caption['mounth'], 'year'=>$caption['year']]);
 
     }
 

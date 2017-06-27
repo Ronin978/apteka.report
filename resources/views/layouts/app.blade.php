@@ -13,8 +13,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -90,7 +88,9 @@
                         @if(\Auth::user()->group == 'superAdmin')    
                             <li><a href="{{action('UserController@myshow')}}">Керування профілями</a></li>
                         @endif
-                            <li><a href="{{action('ReportController@create')}}">Add report</a></li>
+                            <li><a href="{{action('ReportController@index')}}">Всі звіти</a></li>
+                            <li><a href="{{action('PrepController@index')}}">Список препаратів</a></li>
+                            <li><a href="{{action('ReportController@create')}}">Додати звіт</a></li>
                     @endif
                     &nbsp;
                     </ul>

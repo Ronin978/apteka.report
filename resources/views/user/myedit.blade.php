@@ -8,7 +8,7 @@
 	<input type="text" name="name" class="form-control" value="{{$user->name}}"/><br><br>
 	
 	<p>Email</p>
-	<input type="text" name="email" class="form-control" value="{{$user->email}}"/><br><br>
+	<input type="email" name="email" class="form-control" value="{{$user->email}}"/><br><br>
 
 	<p>Підрозділ</p>
 	<input type="text" name="section" class="form-control" value="{{$user->section}}"/><br><br>
