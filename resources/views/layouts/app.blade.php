@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link href="{{asset('css/admin.css')}}" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -122,7 +122,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-
                                 </ul>
                             </li>
                         @endif
@@ -133,11 +132,13 @@
         
         <div id="myContent">
             @yield('content')
+
         </div>
         
     </div>
 
     <!-- Scripts -->
+    
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

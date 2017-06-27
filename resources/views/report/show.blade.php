@@ -2,14 +2,11 @@
 @section('content')
 
 @include('flash::message')
-<form method="POST" action="{{action('ReportController@store')}}">		
-	<input name="section" type="hidden" value="{{$section}}">
 
 	<p align="center">
 		{{$section}}
 		<br>
-		Звіт до бухгалтерії про проходження та використання лікарських засобів та виробів медичного призначенння №
-				
+		Звіт до бухгалтерії про проходження та використання лікарських засобів та виробів медичного призначенння №		
 
 		<p align="center">за 	
 			<select id="mounth" name="mounth" >
@@ -24,8 +21,7 @@
 				<option value="вересень">вересень</option>		
 				<option value="жовтень">жовтень</option>		
 				<option value="листопад">листопад</option>		
-				<option value="грудень">грудень</option>		
-					
+				<option value="грудень">грудень</option>				
 			</select>
 
 
@@ -66,11 +62,5 @@
 	</table>
 	<input type="hidden" name="_token" value="{{csrf_token()}}"/>					
 	<input type="submit" value="Зберегти">
-
-</form>	
-
-<button id="addr" onclick="onAdd()">Додати препарат</button>	
-	
-		<div id="contadd"></div>
 	
 @endsection
