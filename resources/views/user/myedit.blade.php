@@ -31,10 +31,16 @@
 @endif
 	<input type="hidden" name="_method" value="put"/>
 	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-	
+
 	<br>
 	<input type="submit" value="Зберегти">
 
+</form>
+
+<form method="POST" action="{{action('ReportController@update')}}">
+	<input type="text" name="group">
+
+	<input type="submit" value="update">
 </form>
 
 
