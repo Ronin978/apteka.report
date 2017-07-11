@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Preparat extends Migration
+class Metric extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class Preparat extends Migration
      */
     public function up()
     {
-        Schema::create('preparations', function (Blueprint $table) 
+        Schema::create('metric', function (Blueprint $table) 
         {
          $table->increments('id');
-         $table->string('title');
-         $table->string('units');                 
+         $table->integer('id_report');
+         $table->string('type');
+         $table->integer('prihod')->nullable();                 
+         $table->integer('vykor')->nullable();                 
+         $table->integer('result');                 
          $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class Preparat extends Migration
      */
     public function down()
     {
-        Schema::drop('preparations');
+        Schema::drop('metric');
     }
 }

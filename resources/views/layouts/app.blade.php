@@ -66,9 +66,9 @@
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar">1</span>
-                        <span class="icon-bar">2</span>
-                        <span class="icon-bar">3</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                     </button>
 
                     <!-- Branding Image -->
@@ -91,6 +91,7 @@
                             <li><a href="{{action('ReportController@index')}}">Всі звіти</a></li>
                             <li><a href="{{action('PrepController@index')}}">Список препаратів</a></li>
                             <li><a href="{{action('ReportController@create')}}">Додати звіт</a></li>
+                            <li><a href="{{action('MetricController@index')}}">Внести зміни</a></li>
                     @endif
                     &nbsp;
                     </ul>
@@ -110,7 +111,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                                                        
                                     <li>
-                                        <a href="{{action('UserController@index')}}">MyRun</a>
+                                        <a href="{{action('UserController@index')}}">MyRoom</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -14,6 +14,8 @@
 Route::get('/','ReportController@index');
 Route::resource('/allName','PrepController');
 Route::resource('/reports','ReportController');
+Route::resource('/metric','MetricController');
+
 
 Auth::routes();
 

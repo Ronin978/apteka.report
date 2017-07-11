@@ -2,6 +2,9 @@
 @section('content')
 
 @include('flash::message')
+
+<title>{{ config('app.name', 'Новий звіт') }}</title>
+
 <form method="POST" action="{{action('ReportController@store')}}">		
 	<input name="section" type="hidden" value="{{$section}}">
 
@@ -34,7 +37,7 @@
  	</p>
 
 
-	<table id="tableReport" class="table" border="1">
+	<table id="tableReport" class="table tableEdit" border="1">
 	<tr>
 		<td>Номер</td>
 		<td>Найменування</td>
@@ -60,6 +63,7 @@
 					<td><input name="result{{$key}}" id="result{{$key}}" type="text"></td>
 				
 				</tr>
+				
 				<input name="id_preparat{{$key}}" type="hidden" value="{{$prep->id}}">
 			@endforeach
 

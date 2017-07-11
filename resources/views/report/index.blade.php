@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+	@include('flash::message')
 	@foreach($captions as $caption)
 
 		<h3><a href="{{action('ReportController@show', ['id'=>$caption->id])}}">{{$caption->section}}</a></h3>

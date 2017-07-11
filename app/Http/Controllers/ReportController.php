@@ -72,13 +72,20 @@ class ReportController extends Controller
                 $prep['units'] = $post["units$i"];
                      
                 Report::create($report);
+
+
                     
                 if (empty(Preparation::where('title', $prep['title']))) 
                 {
+                    dd(empty(Preparation::where('title', $prep['title'])));
                     Preparation::create($prep);  
                 }
+                else
+                {
+                    dd('vse pratsue');
+                }
             }
-            $alert='Added.';
+            $alert='Додано.';
         }
         else
         {
@@ -110,8 +117,6 @@ class ReportController extends Controller
             $report['preparat_unit']=$preps->units;
         }
 
-        $reportss[]=$report;
-        
         foreach ($captions as $caption) 
         {
             $captionss['section'] = $caption->section;
@@ -142,11 +147,7 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);
-        $user->update($request->all());
-                
-        flash('Дані змінено');
-        return back();
+
     }
 
     /**
@@ -159,4 +160,6 @@ class ReportController extends Controller
     {
         //
     }
+
+
 }

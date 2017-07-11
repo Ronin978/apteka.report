@@ -10,7 +10,7 @@ class PrepController extends Controller
 {
     public function index()
     {
-    	$prep=Preparation::orderBy('created_at', 'DESC')->paginate(10);
+    	$prep=Preparation::all();
     	return view('preparat.index',['prep'=>$prep]);
     }
 

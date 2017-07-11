@@ -50,3 +50,16 @@
 #tableReport{
 	table-layout:auto;
 }
+
+.tableEdit input {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.tableEdit tr td {
+	vertical-align: center;
+	margin: 0;
+	padding: 0;
+}
