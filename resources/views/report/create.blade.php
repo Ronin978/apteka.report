@@ -57,11 +57,10 @@
 					</td>
 					<td><input name="units{{$key}}" type="text" value="{{$prep->units}}"></td>
 					<td><input name="termin{{$key}}" type="date" value="{{date("Y-m-d")}}" min="{{date("Y-m-d")}}"></td>
-					<td><input name="all{{$key}}" id="all{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
-					<td><input name="prihod{{$key}}" id="prihod{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
-					<td><input name="vykor{{$key}}" id="vykor{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
+					<td><input name="all{{$key}}" id="all{{$key}}" type="text" oninput="oninputt('<?php echo $key ?>');"></td>
+					<td><input name="prihod{{$key}}" id="prihod{{$key}}" type="text" oninput="oninputt('<?php echo $key ?>');"></td>
+					<td><input name="vykor{{$key}}" id="vykor{{$key}}" type="text" oninput="oninputt('<?php echo $key ?>');"></td>
 					<td><input name="result{{$key}}" id="result{{$key}}" type="text"></td>
-				
 				</tr>
 				
 				<input name="id_preparat{{$key}}" type="hidden" value="{{$prep->id}}">

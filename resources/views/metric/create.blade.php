@@ -10,23 +10,26 @@
 			<td>Номер</td>
 			<td>Найменування</td>
 			<td>Одиниця виміру</td>			
+			<td>Термін</td>			
 			<td>Прийнято</td>			
 			<td>Видано</td>			
 			<td>Залишок на кін. місця</td>			
 		</tr>
 		
-			@foreach ($preps as $key => $prep)
+			@foreach ($reports as $key => $report)
 				<tr id="{{$key + 1}}">
 					<td>{{$key + 1}}</td>
-					<td>{{$prep->title}}</td>
-					<td>{{$prep->units}}</td>					
-					<td><input name="prihod{{$key}}" id="prihod{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
-					<td><input name="vykor{{$key}}" id="vykor{{$key}}" type="text" oninput="oninputt('<? echo $key ?>');"></td>
-					<td><input name="result{{$key}}" id="result{{$key}}" type="text"></td>				
-				</tr>
+					<td>{{$report->preparat_name}}</td>
+					<td>{{$report->preparat_unit}}</td>
+					<td>{{$report->termin}}</td>
+					<td><input name="in{{$key}}" id="in{{$key}}" type="text" onkeypress="oninput2(<?php echo $key ?>);"></td>
+					<td><input name="up{{$key}}" id="up{{$key}}" type="text" onkeypress="oninput2(<?php echo $key ?>);"></td>
+					<td name="res{{$key}}" id="res{{$key}}">{{$report->result}}</td>
 				
-				<input name="id_preparat{{$key}}" type="hidden" value="{{$prep->id}}">
+				</tr>
 			@endforeach
+
+				
 
 	</table>
 	

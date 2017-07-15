@@ -51,6 +51,7 @@ class ReportController extends Controller
 
         if (empty(Caption::where('section', $caption['section'])->where('mounth', $caption['mounth'])->where('year', $caption['year'])->get()->count())) 
         {
+            
             Caption::create($caption);
 
             for ($i=0; $i <= (count($post)-4)/8 - 1; $i++) 
@@ -67,29 +68,22 @@ class ReportController extends Controller
                 $report['prihod'] = $post["prihod$i"];
                 $report['vykor'] = $post["vykor$i"];
                 $report['result'] = $post["result$i"];
-                
-                $prep['title'] = $post["title$i"];
-                $prep['units'] = $post["units$i"];
-                     
+                                     
                 Report::create($report);
 
-
+                $prep['title'] = $post["title$i"];
+                $prep['units'] = $post["units$i"];
                     
-                if (empty(Preparation::where('title', $prep['title']))) 
+                if (empty(Preparation::where('title', $prep['title'])->get()->count())) 
                 {
-                    dd(empty(Preparation::where('title', $prep['title'])));
                     Preparation::create($prep);  
-                }
-                else
-                {
-                    dd('vse pratsue');
                 }
             }
             $alert='Додано.';
         }
         else
         {
-            $alert='Такий Caption вже є.';
+            $alert='Такий звіт вже є в базі.';
         }
 
         flash($alert);
@@ -108,6 +102,7 @@ class ReportController extends Controller
     public function show($id)
     {
         $reports=Report::where('id_caption', $id)->get();
+        //dd($reports);
         $captions=Caption::where('id', $id)->get();
         
         foreach ($reports as $report) 

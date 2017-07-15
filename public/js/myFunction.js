@@ -1,8 +1,45 @@
 function oninputt(key) {            
-   var all = parseFloat( document.getElementById('all'+key).value );
-   var prihod = parseFloat( document.getElementById('prihod'+key).value );
-   var vykor = parseFloat( document.getElementById('vykor'+key).value );
+    var all = parseFloat( document.getElementById('all'+key).value );
+    var prihod = parseFloat( document.getElementById('prihod'+key).value );
+    var vykor = parseFloat( document.getElementById('vykor'+key).value );
     document.getElementById('result'+key).value = all+prihod-vykor;
+}
+
+function oninput2(key) {
+    var a=document.getElementById('in'+key).value;
+    var b=document.getElementById('up'+key).value;
+
+    var res=parseFloat(document.getElementById('res'+key).innerHTML);
+
+    var inp = parseFloat(a) ;
+    var up = parseFloat(b) ;
+
+
+    
+    if ((isNaN(inp) && isNaN(up)) ) {    
+        alert('isNaN(inp) isNaN(up)');
+        inp=0;
+        up=0;               
+    }
+
+    else if(isNaN(up) && isNaN(inp)==false){
+        alert('isNaN(up)');
+        inp=parseFloat(document.getElementById('in'+key).value);
+        up=0;
+        
+    }
+
+    else if(isNaN(inp) && isNaN(up)==false){
+        alert('isNaN(inp)');
+        inp=0;
+        up=parseFloat(document.getElementById('up'+key).value);
+        
+    }
+
+    else alert('ERROR');
+
+    document.getElementById('res'+key).innerHTML = res - up + inp;          
+
 }
 
 

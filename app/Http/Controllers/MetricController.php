@@ -67,7 +67,7 @@ class MetricController extends Controller
             $captionss['year'] = $caption->year;
         }
         
-        return view('report.show',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
+        return view('metric.create',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
     }
 
     /**
