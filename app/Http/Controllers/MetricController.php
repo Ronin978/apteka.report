@@ -50,24 +50,7 @@ class MetricController extends Controller
      */
     public function show($id)
     {
-        $reports=Report::where('id_caption', $id)->get();
-        $captions=Caption::where('id', $id)->get();
         
-        foreach ($reports as $report) 
-        {            
-            $preps=Preparation::find($report->id_preparat);
-            $report['preparat_name']=$preps->title;
-            $report['preparat_unit']=$preps->units;
-        }
-
-        foreach ($captions as $caption) 
-        {
-            $captionss['section'] = $caption->section;
-            $captionss['mounth'] = $caption->mounth;
-            $captionss['year'] = $caption->year;
-        }
-        
-        return view('metric.create',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
     }
 
     /**
@@ -90,7 +73,14 @@ class MetricController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //$prep=Preparation::find($id);
+        //$prep->update($request->all());
+        //$prep->save();
+
+        $post = $request->all();
+        
+dd($post);
+        
     }
 
     /**
@@ -102,5 +92,49 @@ class MetricController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editIn($id)
+    {
+        $reports=Report::where('id_caption', $id)->get();
+        $captions=Caption::where('id', $id)->get();
+        
+        foreach ($reports as $report) 
+        {            
+            $preps=Preparation::find($report->id_preparat);
+            $report['preparat_name']=$preps->title;
+            $report['preparat_unit']=$preps->units;
+        }
+
+        foreach ($captions as $caption) 
+        {
+            $captionss['section'] = $caption->section;
+            $captionss['mounth'] = $caption->mounth;
+            $captionss['year'] = $caption->year;
+        }
+        
+        return view('metric.createIn',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
+    }
+
+    public function editUp($id)
+    {
+        $reports=Report::where('id_caption', $id)->get();
+        $captions=Caption::where('id', $id)->get();
+        
+        foreach ($reports as $report) 
+        {            
+            $preps=Preparation::find($report->id_preparat);
+            $report['preparat_name']=$preps->title;
+            $report['preparat_unit']=$preps->units;
+        }
+
+        foreach ($captions as $caption) 
+        {
+            $captionss['section'] = $caption->section;
+            $captionss['mounth'] = $caption->mounth;
+            $captionss['year'] = $caption->year;
+        }
+        
+        return view('metric.createUp',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
     }
 }

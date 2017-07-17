@@ -26,3 +26,6 @@ Route::get('/edit/my', 'UserController@myedit')->name('myEdit');
 Route::get('/myshow/all', 'UserController@myshow')->name('myShow')->middleware('checkUser');
 Route::get('/user/restore/{id}', 'UserController@restore');
 Route::get('/user/delete/{id}', 'UserController@delete');
+
+Route::get('/metric/editUp/{id}', 'MetricController@editUp');
+Route::get('/metric/editIn/{id}', 'MetricController@editIn');

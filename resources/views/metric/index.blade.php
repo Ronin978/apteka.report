@@ -9,7 +9,8 @@
 		<h3>{{$caption->section}}</h3>
 		<h5>{{$caption->mounth}}</h5>
 		<h5>{{$caption->year}}</h5>
-		<a href="{{action('MetricController@show', ['id'=>$caption->id])}}">Прийняти/Видати</a>
+		<a href="{{action('MetricController@editIn', ['id'=>$caption->id])}}">Прийняти</a> &nbsp/ 
+		<a href="{{action('MetricController@editUp', ['id'=>$caption->id])}}">Видати</a>
 		<hr>
 		
 		
