@@ -3,7 +3,10 @@
 
 @include('flash::message')
 
-<form method="POST" action="{{action('MetricController@update')}}">
+
+<h2>звіт за {{$caption->mounth}} місяць</h2>
+
+<form method="POST" action="{{action('MetricController@update',['id'=>$caption->id])}}" onSubmit="return confirm('Підтвердити?')">
 	
 	<table id="tableReport" class="table" border="1">
 		<tr>
@@ -18,18 +21,24 @@
 			@foreach ($reports as $key => $report)
 				<tr>
 					<td>{{$key + 1}}</td>
-					<td name="preparat_name{{$key}}">{{$report->preparat_name}}</td>
-					<td name="preparat_unit{{$key}}">{{$report->preparat_unit}}</td>
-					<td name="termin{{$key}}">{{$report->termin}}</td>
-					<td><input name="in{{$key}}" id="in{{$key}}" type="text" onsubmit="editIn(<?php echo $key ?>);"></td>
-					<td name="res{{$key}}" id="res{{$key}}">{{$report->result}}</td>
-				
+
+					<input type="hidden" name="id_preparat{{$key}}" value="{{$report->id_prep}}"/>
+
+					<td>{{$report->preparat_name}}</td>
+					<td>{{$report->preparat_unit}}</td>
+					<td>{{$report->termin}}</td>
+					<td> <input name="in{{$key}}" id="in{{$key}}" type="text"></td>
+					<td><input type="hidden" name="res{{$key}}" value="{{$report->result}}">{{$report->result}}</td>				
 				</tr>
+	
 			@endforeach
 
 	</table>
 	
-	<input type="hidden" name="_token" value="{{csrf_token()}}"/>					
+	<input type="hidden" name="_token" value="{{csrf_token()}}"/>	
+	<input type="hidden" name="_method" value="put"/>
+	<input type="hidden" name="type" value="input"/>
+	
 	<input type="submit" value="Зберегти">
 
 </form>

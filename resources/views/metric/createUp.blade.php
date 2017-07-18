@@ -3,7 +3,7 @@
 
 @include('flash::message')
 
-<form method="POST" action="MetricController@update">
+<form method="POST" action="action('MetricController@update',['id'=>$id_caption])" onSubmit="return confirm('Підтвердити?')">
 	
 	<table id="tableReport" class="table" border="1">
 		<tr>

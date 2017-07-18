@@ -7,6 +7,7 @@ use App\Report;
 use App\Preparation;
 use App\Caption;
 use App\User;
+use App\Metric;
 
 class MetricController extends Controller
 {
@@ -73,13 +74,55 @@ class MetricController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$prep=Preparation::find($id);
-        //$prep->update($request->all());
-        //$prep->save();
-
         $post = $request->all();
+            for ($i=0; $i <= (count($post)-3)/3 - 1; $i++) 
+            {                
+                if ($post["type"]=='input')
+                {
+                    $metric['in'] = $post["in$i"];
+                    $metric['out'] = 0;
+                    $metric['res'] = $post["res$i"] + $metric['in'];
+                }
+                elseif ($post["type"]=='output') 
+                {
+                    $metric['in']=0;
+                    $metric['out'] = $post["out$i"];
+                    $metric['res'] = $post["res$i"] - $metric['out'];
+                }
+                else 
+                {
+                    $alert='Невідома операція.';
+                }
+                
+                $metric['id_caption'] = $id;  
+                $metric['id_preparat'] = $post["id_preparat$i"];  
+                $metric['type'] = $post["type"];  
+
+                Metric::create($metric); 
+
+                //йдемо до табл Report
+                $reports=Report::where('id_caption', $id)->where('id_preparat', $metric['id_preparat'])->get(); 
+                //if ($report->result == $metric['res'])
+                //{
+                    foreach ($reports as $report) 
+                    {
+                        $rep['prihod']=$report->prihod + $metric['in'];
+                        $rep['vykor']=$report->vykor + $metric['out'];
+                        $rep['result']=$metric['res'];
+
+                        $report->update($rep);
+                        $report->save();
+                    }
+                //}  
+            }
+
+
+
+        $alert=' Додано.';        
+
+        flash($alert);
         
-dd($post);
+        return back();
         
     }
 
@@ -97,44 +140,32 @@ dd($post);
     public function editIn($id)
     {
         $reports=Report::where('id_caption', $id)->get();
-        $captions=Caption::where('id', $id)->get();
+        $caption=Caption::find($id);
         
         foreach ($reports as $report) 
         {            
             $preps=Preparation::find($report->id_preparat);
             $report['preparat_name']=$preps->title;
             $report['preparat_unit']=$preps->units;
-        }
-
-        foreach ($captions as $caption) 
-        {
-            $captionss['section'] = $caption->section;
-            $captionss['mounth'] = $caption->mounth;
-            $captionss['year'] = $caption->year;
+            $report['id_prep']=$preps->id;
         }
         
-        return view('metric.createIn',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
+        return view('metric.createIn',['reports'=>$reports, 'caption'=>$caption]);
     }
 
     public function editUp($id)
     {
         $reports=Report::where('id_caption', $id)->get();
-        $captions=Caption::where('id', $id)->get();
+        $caption=Caption::find($id);
         
         foreach ($reports as $report) 
         {            
             $preps=Preparation::find($report->id_preparat);
             $report['preparat_name']=$preps->title;
             $report['preparat_unit']=$preps->units;
-        }
-
-        foreach ($captions as $caption) 
-        {
-            $captionss['section'] = $caption->section;
-            $captionss['mounth'] = $caption->mounth;
-            $captionss['year'] = $caption->year;
+            $report['id_prep']=$preps->id;
         }
         
-        return view('metric.createUp',['reports'=>$reports, 'section'=>$captionss['section'], 'mounth'=>$captionss['mounth'], 'year'=>$captionss['year']]);
+        return view('metric.createIn',['reports'=>$reports, 'caption'=>$caption]);
     }
 }

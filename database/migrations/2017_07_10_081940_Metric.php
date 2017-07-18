@@ -16,11 +16,12 @@ class Metric extends Migration
         Schema::create('metric', function (Blueprint $table) 
         {
          $table->increments('id');
-         $table->integer('id_report');
+         $table->integer('id_caption');
+         $table->integer('id_preparat');
          $table->string('type');
-         $table->integer('prihod')->nullable();                 
-         $table->integer('vykor')->nullable();                 
-         $table->integer('result');                 
+         $table->integer('in')->nullable();                 
+         $table->integer('out')->nullable();                 
+         $table->integer('res');                 
          $table->timestamps();
         });
     }
