@@ -92,6 +92,7 @@
                             <li><a href="{{action('PrepController@index')}}">Список препаратів</a></li>
                             <li><a href="{{action('ReportController@create')}}">Додати звіт</a></li>
                             <li><a href="{{action('MetricController@index')}}">Внести зміни</a></li>
+                            <li><a href="{{action('MetricController@create')}}">Архів</a></li>
                     @endif
                     &nbsp;
                     </ul>

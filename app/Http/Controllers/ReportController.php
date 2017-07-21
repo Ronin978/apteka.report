@@ -18,6 +18,7 @@ class ReportController extends Controller
     public function index()
     {
         $captions=Caption::all();
+        //dd($captions);
         return view('report.index',['captions'=>$captions]);
               
     }

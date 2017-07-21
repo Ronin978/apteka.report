@@ -29,9 +29,12 @@ class MetricController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $metric=Metric::select('type', 'created_at', 'updated_at')->orderBy('updated_at', 'DESC')->distinct('updated_at')->paginate(10);
 
+        //$id=Metric::select('id')->orderBy('updated_at', 'DESC')->distinct('updated_at')->paginate(10);
+
+        return view('metric.arhiv',['metrics'=>$metric]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -75,6 +78,7 @@ class MetricController extends Controller
     public function update(Request $request, $id)
     {
         $post = $request->all();
+       // dd($post);
             for ($i=0; $i <= (count($post)-3)/3 - 1; $i++) 
             {                
                 if ($post["type"]=='input')
@@ -88,6 +92,7 @@ class MetricController extends Controller
                     $metric['in']=0;
                     $metric['out'] = $post["out$i"];
                     $metric['res'] = $post["res$i"] - $metric['out'];
+                   // dd($metric['res']);
                 }
                 else 
                 {
@@ -102,8 +107,7 @@ class MetricController extends Controller
 
                 //йдемо до табл Report
                 $reports=Report::where('id_caption', $id)->where('id_preparat', $metric['id_preparat'])->get(); 
-                //if ($report->result == $metric['res'])
-                //{
+                
                     foreach ($reports as $report) 
                     {
                         $rep['prihod']=$report->prihod + $metric['in'];
@@ -113,7 +117,7 @@ class MetricController extends Controller
                         $report->update($rep);
                         $report->save();
                     }
-                //}  
+                
             }
 
 
@@ -166,6 +170,6 @@ class MetricController extends Controller
             $report['id_prep']=$preps->id;
         }
         
-        return view('metric.createIn',['reports'=>$reports, 'caption'=>$caption]);
+        return view('metric.createUp',['reports'=>$reports, 'caption'=>$caption]);
     }
 }
