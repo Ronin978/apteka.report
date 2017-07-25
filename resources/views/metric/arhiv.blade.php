@@ -20,8 +20,8 @@
 		
 	@endforeach
 
-
-{{ $metrics->links() }}
-
+<div class="myPaginate">
+	{{ $metrics->links() }}
+</div>
 	
 @endsection

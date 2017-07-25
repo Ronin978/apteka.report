@@ -31,8 +31,6 @@ class MetricController extends Controller
     {
         $metric=Metric::select('type', 'created_at', 'updated_at')->orderBy('updated_at', 'DESC')->distinct('updated_at')->paginate(10);
 
-        //$id=Metric::select('id')->orderBy('updated_at', 'DESC')->distinct('updated_at')->paginate(10);
-
         return view('metric.arhiv',['metrics'=>$metric]);
     }
     /**
